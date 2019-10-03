@@ -13,16 +13,6 @@ parser.add_argument("--outrate", help="output frame rate", type=str,default='10'
 parser.add_argument("--nprocess", help="number of process", type=int,default=2,action="store")
 args = parser.parse_args()
 
-
-
-"""
-CREATING DIRECTORIES
-s = lambda x: Path(x.as_posix().replace('/kinetics/', '/kineticsresize/')).mkdir(exist_ok = True)
-path = Path('/home/keshav/DATA/kinetics/train')
-dirpath = path.glob('*')
-[*map(s,dirpath)]
-"""
-
 source = args.source
 destination = args.destination
 outsize = args.outsize
@@ -34,8 +24,6 @@ path = Path(source)
 donepath = Path(destination)
 
 donepath.mkdir(parents=True,exist_ok=True)
-# get_dest = lambda x: x.as_posix().replace('/kinetics/', '/kineticsresize/')
-chunks = lambda l, n: [l[x: x+n] for x in range(0, len(l), n)]
 
 get_dest = lambda x: Path(destination,x.parent.name, x.name).as_posix().replace('.avi','.mp4')
 get_source = lambda x:Path(source,x.parent.name,x.name.replace('.mp4','.avi')).as_posix()
